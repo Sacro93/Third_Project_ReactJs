@@ -10,4 +10,4 @@ export default function Button(props){
     return( <button style={styleButton} className="button" >{props.children}</button>)
 }
 
-//estilos 1.43 hs de la clase 4 
+// estilos 1.43 hs de la clase 4 
