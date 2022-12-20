@@ -1,7 +1,7 @@
 const NavItem = ({  href,children }) => {
   return (
     <li className="nav-item ">
-      <a className="nav-link" href={href}>{children}</a>
+      <a className="nav-link " href={href}>{children}</a>
     </li>
   );
 };

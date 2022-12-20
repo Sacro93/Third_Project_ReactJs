@@ -6,7 +6,7 @@ function Card(props) {
   
     return (
      
-      <div>
+      <div className= "m-5 text-center gap-3">
         
         <img height="220px" src={props.img}  alt={props.title}/>
         <h3>{props.title}</h3>
