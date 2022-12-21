@@ -22,7 +22,6 @@ function App() {
           detail="Play 5"
         />
 
-
 <Card
           img="/imgs/placard.jpg"
           title="Placard 2 m x 1.6m"
