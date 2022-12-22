@@ -1,12 +1,13 @@
-import React from "react"
+import React from "react";
+//impor {userState} from "react";
 //ahi estan los hooks
 import "./button.css";
 
 export default function Button(props) {
    
 
-let[colorState, setColorState]= React.useState();
-
+const [colorState, setColorState]= React.useState();
+// const[colorState, setColorState]= React.useState("grey");
 
   let styleButton = {
     backgroundColor: colorState,
@@ -14,7 +15,7 @@ let[colorState, setColorState]= React.useState();
   };
 
 function handleClick(event){
-    console.log("evento cick")
+    console.log("event cick")
     setColorState("red");
    
 }
