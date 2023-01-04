@@ -14,7 +14,7 @@ function ItemCount(props) {
 
   return (
     <div className="d-flex wrap m-3">
-        <button disabled={count === 1 } onClick={handleDiscount}> - </button>
+        <button disabled={count <= 0 } onClick={handleDiscount}> - </button>
       <p> {count}</p>
       <button onClick={handleAdd} disabled={count === props.stock} >+</button>
     </div>
