@@ -1,4 +1,4 @@
-import Button from "../button/Button";
+ import Button from "../button/Button";
 import ItemCount from "../itemCount/ItemCount";
 
 function Item(props) {
@@ -15,7 +15,7 @@ function Item(props) {
       <h4 className="mt-3">$ {price}</h4>
       <br />
       <Button >
-        Add to cart
+        Ver mas
       </Button>
       <ItemCount  stock={5} />
       </div>

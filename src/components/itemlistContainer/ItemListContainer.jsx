@@ -23,9 +23,3 @@ console.log(articulos)
 }
 export default ItemListcontainer;
 
-// useEffect(() => {
-//   obtenerProductos().then((respuesta) => {
-//     setProducts(respuesta);
-//   })
-// },
-// []);
