@@ -21,7 +21,7 @@ function handleClick(event){
 }
 
   return (
-    <button onClick={handleClick} style={styleButton} className="button">
+    <button onClick={handleClick} style={styleButton} className="btn btn-primary btn-sm">
       {props.children}
     </button>
   );

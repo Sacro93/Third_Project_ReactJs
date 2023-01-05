@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 import Card from "./Item";
 import Flex from "../Flex/flex";
-import obtenerProductos from "../../services/mockService";
+// import obtenerProductos from "../../services/mockService";
 
 function ItemListcontainer() {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
+  const [articulos, setArticulos] = useState([]);
 
   useEffect(() => {
-    obtenerProductos().then((respuesta) => {
-      setProducts(respuesta);
-    })
-  },
-  []);
-
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((json) => setArticulos(json));
+  }, []);
+console.log(articulos)
   return (
     <Flex>
-      {products.map((itemIterado) => {
+      {articulos.map((itemIterado) => {
         return <Card id={itemIterado.id} key={itemIterado.id} item={itemIterado} />;
       })}
     </Flex>
   );
 }
 export default ItemListcontainer;
- 
+

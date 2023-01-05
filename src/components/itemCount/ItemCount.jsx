@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 
+
 function ItemCount(props) {
   const [count, setCount] = useState(0);
 
@@ -13,10 +14,14 @@ function ItemCount(props) {
   }
 
   return (
-    <div className="d-flex wrap m-3">
-        <button disabled={count <= 0 } onClick={handleDiscount}> - </button>
-      <p> {count}</p>
-      <button onClick={handleAdd} disabled={count === props.stock} >+</button>
+    <div className="  ">
+    <div className="d-flex wrap btn justify-content-center">
+        <button className="badge text-bg-primary" disabled={count <= 0 } onClick={handleDiscount}> - </button>
+     
+     <span className="badge text-bg-secondary d-flex align-items-center"> {count} </span>
+    
+      <button className="badge text-bg-primary" onClick={handleAdd} disabled={count === props.stock} >+</button>
+    </div>
     </div>
   );
 }
