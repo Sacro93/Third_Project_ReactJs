@@ -1,7 +1,9 @@
-const NavItem = ({  href,children }) => {
+import { Link } from "react-router-dom";
+
+const NavItem = ({  to,children }) => {
   return (
     <li className="nav-item ">
-      <a className="nav-link " href={href}>{children}</a>
+      <Link className="nav-link " to={to}>{children}</Link>
     </li>
   );
 };

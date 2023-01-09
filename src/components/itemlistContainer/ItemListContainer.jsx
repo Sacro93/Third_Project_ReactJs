@@ -1,25 +1,48 @@
 import { useState, useEffect } from "react";
-import Card from "./Item";
+import Item from "./Item";
 import Flex from "../Flex/flex";
-// import obtenerProductos from "../../services/mockService";
-
+import obtenerProductos from "../../services/mockService";
+import { useParams } from "react-router-dom";
+import { getCategory } from "../../services/mockService";
 function ItemListcontainer() {
-  // const [products, setProducts] = useState([]);
   const [articulos, setArticulos] = useState([]);
 
+  // useEffect(() => {
+  //   fetch("https://fakestoreapi.com/obtener")
+  //     .then((res) => res.json()) 
+  //     .then((json) => setArticulos(json));
+  // }, []);
+
+  let{categoryid} =useParams();
+
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setArticulos(json));
+    if (!categoryid) {
+      obtenerProductos()
+        .then((respuesta) => {
+          setArticulos(respuesta);
+        })
+        .catch((error) => alert(error));
+    } else {
+      getCategory(categoryid)
+      .then((respuesta) => {
+        setArticulos(respuesta);
+      });
+    }
   }, []);
-console.log(articulos)
+
   return (
     <Flex>
       {articulos.map((itemIterado) => {
-        return <Card id={itemIterado.id} key={itemIterado.id} item={itemIterado} />;
+        return (
+          <Item
+            id={itemIterado.id}
+            key={itemIterado.id}
+            article={itemIterado}
+          />
+        );
       })}
     </Flex>
   );
 }
-export default ItemListcontainer;
 
+export default ItemListcontainer;

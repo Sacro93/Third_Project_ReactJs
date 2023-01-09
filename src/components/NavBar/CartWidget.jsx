@@ -2,7 +2,7 @@
 
 
 
-const CardWidget = () => {
+const CartWidget = () => {
     return (
       <button className="nav-item btn btn-outline-danger ">
         <img src="./imgs/cart-check-fill.svg" alt="Logo" />1
@@ -10,5 +10,5 @@ const CardWidget = () => {
     );
   };
   
-  export default CardWidget;
+  export default CartWidget;
   

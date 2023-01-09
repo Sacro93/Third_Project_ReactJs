@@ -1,22 +1,25 @@
 import NavItem from "./NavItem";
 import Logo from "../Logo/Logo";
-import CardWidget from "./CardWidget";
+import CartWidget from "./CartWidget";
+import { Link } from "react-router-dom";
+
 
 function NavBar() {
-  const links= ["Electronica", "Electrodomesticos", "Hogar & Deco"]
-  //con links [{title: "electronica", url:"/electronica"},{title: "electronica", url:"/electronica"}]
+  
   return (
     <header>
       <nav className="navbar navbar-expand-lg bg-light mb-3 d-flex justify-content-around">
-        <Logo />
+     <NavItem to="/"> <Logo/></NavItem>
         <div className="navbar-brand ">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
             
-
-            {links.map((access)=> <NavItem href="#">{access}</NavItem>)}
-            {/* <NavItem key={access.title} href={access.url}>{access.title}</NavItem> */}
-            <CardWidget />
+            <NavItem to="/" >Products</NavItem>
+            <NavItem to="/category/Appliances" >Appliances</NavItem>
+            <Link to="/category/Tecnology" >Tecnology</Link>
+            <NavItem to="/category/Furniture" >Furniture</NavItem>
+            
           </ul>
+          <CartWidget/>
         </div>
       </nav>
     </header> 
@@ -24,4 +27,4 @@ function NavBar() {
 }
 
 export default NavBar;
-//11 min case after
+
