@@ -1,18 +1,21 @@
 import "./App.css";
-
 import NavBar from "./components/NavBar/NavBar";
-
-import ItemListcontainer from "./components/itemlistContainer/ItemListContainer";
-
-//esto es lo que se renderiza en "index.js" "<App/>"
-//no se tiene todo en un mismo archivo , todo por separado y luego se "importa" , webpack lo une
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./components/HomePage/HomePage";
 
 function App() {
   return (
     <>
-      <NavBar />
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />}/>
+          <Route path="/detail/:idArticle" element={<ItemDetailContainer />}/>
 
-      <ItemListcontainer />
+          </Routes>
+        
+      </BrowserRouter>
     </>
   );
 }

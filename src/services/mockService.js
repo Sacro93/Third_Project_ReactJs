@@ -1,4 +1,4 @@
-const products = [
+const dataProducts = [
   {
     img: "../imgs/play5.jpg",
     id: 1,
@@ -37,16 +37,25 @@ const products = [
 ];
 
 const obtenerProductos = () => {
-  return new Promise((resolve, rejected) => {
-    console.log("contecting to backend....");
-
-
-
+  return new Promise((resolve) => {
     setTimeout(() => {
-      
-      if (resolve(products));
+      if (resolve(dataProducts));
+    }, 2000);
+  });
+};
+const getSpecificArticle = (idItem) => {
+  return new Promise((resolve) =>{
+  const reqItem = dataProducts.find((articleItem) => {
+    console.log(articleItem.id, idItem)
+    return articleItem.id === Number(idItem);
+  });
+  
+    setTimeout(() => {
+      resolve(reqItem);
     }, 2000);
   });
 };
 
 export default obtenerProductos;
+
+export { getSpecificArticle };

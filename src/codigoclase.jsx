@@ -19,15 +19,15 @@ function App() {
     border: "outset",
   };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div class="App">
+      <header class="App-header">
+        <img src={logo} class="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
 
         <a
-          className="App-link"
+          class="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
@@ -35,7 +35,7 @@ function App() {
           {title}
         </a>
       </header>
-      <div style={miEstilo} className="catalogo">
+      <div style={miEstilo} class="catalogo">
         <Card
           img="/imgs/zapa.jfif"
           title="Zapas"
@@ -77,7 +77,7 @@ export default function Button(props){
         backgroundColor: props.color,
         padding: props.padding,
     };
-    return( <button style={styleButton} className="button" >{props.children}</button>)
+    return( <button style={styleButton} class="button" >{props.children}</button>)
 } */
 
 //clase 1 a 5 CARD.jsx
