@@ -17,9 +17,9 @@ function NavBar() {
             <NavItem to="/category/Appliances" >Appliances</NavItem>
             <NavItem to="/category/Tecnology" >Tecnology</NavItem>
             <NavItem to="/category/Furniture" >Furniture</NavItem>
-            
+            <CartWidget/>
           </ul>
-          <CartWidget/>
+          
         </div>
       </nav>
     </header> 
