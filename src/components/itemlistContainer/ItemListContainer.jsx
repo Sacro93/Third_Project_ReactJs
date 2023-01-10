@@ -4,6 +4,10 @@ import Flex from "../Flex/flex";
 import obtenerProductos from "../../services/mockService";
 import { useParams } from "react-router-dom";
 import { getCategory } from "../../services/mockService";
+
+
+
+
 function ItemListcontainer() {
   const [articulos, setArticulos] = useState([]);
 
@@ -28,7 +32,7 @@ function ItemListcontainer() {
         setArticulos(respuesta);
       });
     }
-  }, []);
+  }, [categoryid]);
 
   return (
     <Flex>

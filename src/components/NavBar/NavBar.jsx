@@ -15,7 +15,7 @@ function NavBar() {
             
             <NavItem to="/" >Products</NavItem>
             <NavItem to="/category/Appliances" >Appliances</NavItem>
-            <Link to="/category/Tecnology" >Tecnology</Link>
+            <NavItem to="/category/Tecnology" >Tecnology</NavItem>
             <NavItem to="/category/Furniture" >Furniture</NavItem>
             
           </ul>
