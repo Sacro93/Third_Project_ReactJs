@@ -25,11 +25,11 @@ const dataProducts = [
     category: "Furniture",
   },
   {
-    img: "../imgs/play5.jpg",
+    img: "../imgs/iphone_14.jfif",
     id: 4,
-    title: "Play Station 5",
-    detail: "Consola ultima generacion",
-    price: 250000,
+    title: "Iphone 14 Pro Max",
+    detail: "Celular Apple",
+    price: 420000,
     category: "Tecnology",
   },
   {
@@ -40,22 +40,32 @@ const dataProducts = [
     price: 250000,
     category: "Tecnology",
   },
+
   {
-    img: "../imgs/lavarropas_samsung.jpeg",
+    img: "../imgs/xboxSerieX.jpg_1700Wx1700H",
     id: 6,
-    title: "Lavarropas ELA0F2",
-    detail: "Lavarropas 7kg 1000rpm",
-    price: 136000,
-    category: "Appliances",
+    title: "Xbox Series X",
+    detail: "Consola de Microsoft",
+    price: 200000,
+    category: "Tecnology",
   },
   {
-    img: "../imgs/lavarropas_samsung.jpeg",
+    img: "../imgs/mesa_sillas_exterior.jpg",
     id: 7,
-    title: "Lavarropas ELA0F2",
-    detail: "Lavarropas 7kg 1000rpm",
-    price: 136000,
-    category: "Appliances",
+    title: "Juego de Mesa exterior",
+    detail: "Juego de Mesa Premium 4 sillas ",
+    price: 60000,
+    category: "Furniture",
   },
+  {
+    img: "../imgs/s22_ultra.jfif",
+    id: 8,
+    title: "Samsung Galaxy S22 Ultra White",
+    detail: "Tiene ina pantalla Super AMOLED Plus de 4.3. La resolución es de 480 x 800 y una densidad de los píxeles de 217 ppi",
+    price: 300000,
+    category: "Tecnology",
+  },
+  
 ];
 
 const obtenerProductos = () => {
