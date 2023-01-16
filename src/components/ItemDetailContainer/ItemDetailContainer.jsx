@@ -1,41 +1,40 @@
-import React from "react"
-import DetailContainer from "./DetailContainer"
-import { useState, useEffect } from "react";
+import React from "react";
+import DetailContainer from "./DetailContainer";
+import { useState, useEffect, useContext } from "react";
 
 import { useParams } from "react-router-dom";
 import { getSpecificArticle } from "../../services/mockService";
 
+import { cartContext } from "../../storage/cartContext";
 
 
+function ItemDetailContainer() {
+  const [specificArticle, setDetailArticle] = useState({title: "loading", price: "---"});
 
-function ItemDetailContainer(){
+  let params = useParams();
+ const{addToCart} =useContext(cartContext)
 
+  function handleAddToCart(count){
+  const articleCount ={...setDetailArticle, count: count};
+  addToCart(articleCount)
+  }
 
+  useEffect(() => {
+    getSpecificArticle(params.idArticle).then((res) => {
+      setDetailArticle(res);
+    });
+  }, []);
 
-    const [specificArticle, setDetailArticle] = useState([]);
-
-let params= useParams()
-
-
-useEffect(()=>{
-  getSpecificArticle(params.idArticle)
-    .then((res)=>{
-        setDetailArticle(res)
-    })
-
-},[])
-
-
-    return(
-      
-       <DetailContainer
-       img={specificArticle.img}
-       id={specificArticle.id}
-       title={specificArticle.title}
-       detail={specificArticle.detail}
-       price={specificArticle.price}
-      />
-    )
+  return (
+    <DetailContainer
+    onAddToCart={handleAddToCart}
+      img={specificArticle.img}
+      id={specificArticle.id}
+      title={specificArticle.title}
+      detail={specificArticle.detail}
+      price={specificArticle.price}
+    />
+  );
 }
 
-export default ItemDetailContainer
+export default ItemDetailContainer;
