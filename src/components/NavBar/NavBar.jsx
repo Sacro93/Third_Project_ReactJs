@@ -2,9 +2,14 @@ import NavItem from "./NavItem";
 import Logo from "../Logo/Logo";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { cartContext } from "../../storage/cartContext";
+import Button from "../button/Button";
 
 
-function NavBar() {
+function NavBar(props) {
+  const context = useContext(cartContext)
+  context.test();
   
   return (
     <header>
@@ -18,6 +23,7 @@ function NavBar() {
             <NavItem to="/category/Tecnology" >Tecnology</NavItem>
             <NavItem to="/category/Furniture" >Furniture</NavItem>
             <CartWidget/>
+            <Button >Log out</Button>
           </ul>
           
         </div>

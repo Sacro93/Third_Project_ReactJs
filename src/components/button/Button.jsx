@@ -9,20 +9,17 @@ export default function Button(props) {
 const [colorState, setColorState]= React.useState();
 // const[colorState, setColorState]= React.useState("grey");
 
-  let styleButton = {
-    backgroundColor: colorState,
-    padding: props.padding,
-  };
+  // let styleButton = {
+  //   backgroundColor: colorState,
+  //   padding: props.padding,
+  // };
 
-function handleClick(event){
-    console.log("event cick")
-    setColorState("red");
-   
-}
+
 
   return (
-    <button onClick={handleClick} style={styleButton} className="btn btn-primary btn-sm">
+    <button onClick={props.onClick} className="btn btn-primary btn-sm">
       {props.children}
     </button>
   );
 }
+// 

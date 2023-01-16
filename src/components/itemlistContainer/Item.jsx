@@ -12,7 +12,7 @@ function Item(props) {
       <h5 className="card-title mb-5">{title}</h5>
       <img className="image" src={img} alt={title} />
       <h4 className="mt-3">$ {price}</h4>
-      <br />
+     
       <Link to={`/detail/${id} `}>
       <Button >
         Ver mas
@@ -21,7 +21,7 @@ function Item(props) {
       
       </div>
     </div>
-  );
+  ); 
 }
 
 export default Item;

@@ -6,7 +6,9 @@ import HomePage from "./components/HomePage/HomePage";
 import ItemListcontainer from "./components/itemlistContainer/ItemListContainer";
 import PageNotFound from "./components/HomePage/PageNotFound";
 
+import { CartProvider } from "./storage/cartContext";
 
+// export const userContext =createContext({user:"anonymus"});
 
 
 function App() {
@@ -14,7 +16,9 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      <CartProvider>
         <NavBar />
+
         <Routes>
           <Route path="/" element={<HomePage />}/>
           <Route path="/detail/:idArticle" element={<ItemDetailContainer />}/>
@@ -22,9 +26,13 @@ function App() {
           <Route path="*" element={<PageNotFound />}/>
 
           </Routes>
-        
+        </CartProvider>
       </BrowserRouter>
+   
     </>
   );
 }
 export default App;
+
+
+// hora 1.25 de eventos
