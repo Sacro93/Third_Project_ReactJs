@@ -23,7 +23,7 @@ function NavBar(props) {
             <NavItem to="/category/Tecnology" >Tecnology</NavItem>
             <NavItem to="/category/Furniture" >Furniture</NavItem>
             <CartWidget/>
-            <Button >Log out</Button>
+            {/* <Button >Log out</Button> */}
           </ul>
           
         </div>
