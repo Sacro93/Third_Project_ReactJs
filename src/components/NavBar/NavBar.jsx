@@ -4,7 +4,7 @@ import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { cartContext } from "../../storage/cartContext";
-import Button from "../button/Button";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 
 function NavBar(props) {
