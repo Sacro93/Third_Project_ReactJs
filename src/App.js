@@ -7,6 +7,7 @@ import ItemListcontainer from "./components/itemlistContainer/ItemListContainer"
 import PageNotFound from "./components/HomePage/PageNotFound";
 import { CartProvider } from "./storage/cartContext";
 import { SkeletonTheme } from "react-loading-skeleton";
+import CartContainer from "./components/Cart/CartContainer";
 // export const userContext =createContext({user:"anonymus"});
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 path="/category/:categoryid"
                 element={<ItemListcontainer />}
               />
+              <Route path="/cart" element={<CartContainer />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </CartProvider>
