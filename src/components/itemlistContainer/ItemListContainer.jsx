@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import Item from "./Item";
 import Flex from "../Flex/flex";
-import obtenerProductos from "../../services/mockService";
+// import obtenerProductos from "../../services/mockService";
+import { getProducts } from "../../services/firebase";
 import { useParams } from "react-router-dom";
-import { getCategory } from "../../services/mockService";
+import { getCategory } from "../../services/firebase";
 import Loading from "../Loader/Loading";
 
 
@@ -18,7 +19,7 @@ function ItemListcontainer() {
 
   useEffect(() => {
     if (!categoryid) {
-      obtenerProductos()
+      getProducts()
         .then((respuesta) => {
           setArticulos(respuesta);
           setIsLoading(false);

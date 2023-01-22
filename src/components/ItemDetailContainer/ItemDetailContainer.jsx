@@ -2,7 +2,7 @@ import React from "react";
 import DetailContainer from "./DetailContainer";
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { getSpecificArticle } from "../../services/mockService";
+import { getSpecificArticle } from "../../services/firebase";
 import { cartContext } from "../../storage/cartContext";
 
 
