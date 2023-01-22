@@ -1,9 +1,10 @@
 import Button from "../button/Button";
 import ItemCount from "../itemCount/ItemCount";
 import Flex from "../Flex/flex";
+import NavItem from "../NavBar/NavItem";
 
 
-function DetailContainer({title, price, img,detail,onAddToCart}){
+function DetailContainer({title, price, img,detail,onAddToCart,isInCart}){
 
  
     return(
@@ -16,8 +17,13 @@ function DetailContainer({title, price, img,detail,onAddToCart}){
     <p className="card-text text-center">{detail}</p>
     <p className="card-text text-center"><small class="text-muted">{price}</small></p>
   
+   {
+    isInCart? <NavItem to="/cart">
+      <Button>Ir al Cart</Button>
+    </NavItem>
+    :
     <ItemCount onAddToCart={onAddToCart}/>
-    <Button >Add to cart</Button>
+   }
   </div>
 </div>
 </Flex>

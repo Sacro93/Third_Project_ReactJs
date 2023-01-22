@@ -17,3 +17,4 @@ function CartWidget  (){
   
   export default CartWidget;
   
+  //aplciar condicional

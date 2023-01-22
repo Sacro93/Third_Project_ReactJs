@@ -3,7 +3,7 @@ import React from "react";
 //ahi estan los hooks
 import "./button.css";
 
-export default function Button(props) {
+ function Button(props) {
    
 
 const [colorState, setColorState]= React.useState();
@@ -22,4 +22,6 @@ const [colorState, setColorState]= React.useState();
     </button>
   );
 }
+
+export default Button
 // 

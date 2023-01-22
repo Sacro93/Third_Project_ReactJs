@@ -1,0 +1,22 @@
+Que falta al proyecto al 21/01 
+
+Funciones de remover item, sumar item, total del item agregado al carrito
+Estetica del carrito
+Estetica del Menu
+Estetica del Item detail
+
+ver si en la estetica uso material react en vez de bootstrap 
+
+
+rendering condicional al mostar numero en cart, al recargar item detail
+sumar productos al stock
+indicar promociones y descuentos
+agregar footer y algun carrousel a la pagina principal .
+
+Crear perfil de usuario
+
+ver de usar api externa
+
+
+
+
