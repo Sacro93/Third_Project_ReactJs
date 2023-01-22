@@ -8,12 +8,15 @@ import PageNotFound from "./components/HomePage/PageNotFound";
 import { CartProvider } from "./storage/cartContext";
 import { SkeletonTheme } from "react-loading-skeleton";
 import CartContainer from "./components/Cart/CartContainer";
+import { getProducts } from "./services/firebase";
+
 // export const userContext =createContext({user:"anonymus"});
 
 function App() {
+  getProducts()
   return (
     <>
-      <SkeletonTheme baseColor="#202020" highlightColor="#444">
+      <SkeletonTheme baseColr="#202020" highlightColor="#444">
         <BrowserRouter>
           <CartProvider>
             <NavBar />
