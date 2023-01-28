@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import CartContainer from "../components/Cart/CartContainer";
 
 export const cartContext = createContext({ cart: [] });
 
@@ -6,6 +7,7 @@ function CartProvider(props) {
   const [cart, setCart] = useState([]);
   // let cart=[]
   
+  //problemas con cart no lee el objeto al crear un finalizar compra y se consologuea en CartContainer.jsx
 
   function addToCart(item) {
     let isInCart = cart.findIndex((itemInCart) => itemInCart.id === item.id);
@@ -26,7 +28,8 @@ function CartProvider(props) {
     return cart.length;
   }
   function getTotalPriceincart() {
-    return 1000
+    let total=5
+    return total;
   }
   return (
   

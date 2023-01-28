@@ -7,6 +7,7 @@ import {
   getDoc,
   query,
   where,
+  addDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -55,12 +56,16 @@ export async function getCategory(categoryUrl) {
   const snapshot =await getDocs(q)
   
   const getArticles = snapshot.docs.map((element) => {
-    //leo el id y la data de los elementos
     let article = element.data();
     article.id = element.id;
     return article;
   });
   return getArticles
 }
-
+export async function createOrder(order){
+  const orderRef=collection(dataBaseFirestore,"order")
+ let respuesta= await addDoc(orderRef,order)
+ console.log(respuesta, respuesta.id)
+ return respuesta.id
+}
 export default dataBaseFirestore;

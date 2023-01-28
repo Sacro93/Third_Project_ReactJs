@@ -15,7 +15,7 @@ function DetailContainer({title, price, img,detail,onAddToCart,isInCart}){
     <h5 className="card-title text-center">{title}</h5>
    
     <p className="card-text text-center">{detail}</p>
-    <p className="card-text text-center"><small class="text-muted">{price}</small></p>
+    <p className="card-text text-center"><small className="text-muted">{price}</small></p>
   
    {
     isInCart? <NavItem to="/cart">
