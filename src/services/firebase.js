@@ -44,7 +44,7 @@ export async function getSpecificArticle(idUrl) {
   const productsReference = collection(dataBaseFirestore, "products");
   const docRef = doc(productsReference, idUrl);
   const snapshot = await getDoc(docRef);
-  return snapshot.data();
+  return { ...snapshot.data(), id: snapshot.id };
 }
 
 export async function getCategory(categoryUrl) {
@@ -58,14 +58,38 @@ export async function getCategory(categoryUrl) {
   const getArticles = snapshot.docs.map((element) => {
     let article = element.data();
     article.id = element.id;
-    return article;
+    return article; 
   });
   return getArticles
 }
+
 export async function createOrder(order){
-  const orderRef=collection(dataBaseFirestore,"order")
- let respuesta= await addDoc(orderRef,order)
- console.log(respuesta, respuesta.id)
- return respuesta.id
+
+  const orderRef=collection( dataBaseFirestore,"order")
+  let respuesta = await addDoc(orderRef,order)
+  console.log(respuesta,respuesta.id)
+  return respuesta.id
+
 }
+
+//Stock no es obligatorio pero se puede hacer, la funcion esta en la clase 13 1.40horas
+
+
+//subir productos a firebase ejemplo. se puede realizar con una API?
+/*
+export async function exportArray(){
+  const products=[{},{},{},{},{},{}....]
+
+  for (let item of products){
+    delete item.id(por si tiene id)
+    addDoc(collection(dataBaseFirestore,"products"),item).then((respuesta)=>
+    console.log("item creado:",respuesta.id));
+
+  }
+  1.50hs se pueden crear batch ejemplo de profe
+}
+
+
+*/
+
 export default dataBaseFirestore;
