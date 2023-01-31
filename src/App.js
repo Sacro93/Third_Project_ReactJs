@@ -6,21 +6,17 @@ import HomePage from "./components/HomePage/HomePage";
 import ItemListcontainer from "./components/itemlistContainer/ItemListContainer";
 import PageNotFound from "./components/HomePage/PageNotFound";
 import { CartProvider } from "./storage/cartContext";
-import { SkeletonTheme } from "react-loading-skeleton";
 import CartContainer from "./components/Cart/CartContainer";
 import { getProducts } from "./services/firebase";
 
-// export const userContext =createContext({user:"anonymus"});
+
 
 function App() {
-  getProducts()
+  // getProducts()
   return (
-    <>
-      <SkeletonTheme baseColr="#202020" highlightColor="#444">
         <BrowserRouter>
           <CartProvider>
             <NavBar />
-
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route
@@ -33,13 +29,15 @@ function App() {
               />
               <Route path="/cart" element={<CartContainer />} />
               <Route path="*" element={<PageNotFound />} />
+              <Route path="/gracias/:orderid" element={<h1>Gracias por tu compra</h1>}/>
+              //ver con useParams llamar al id del producto que compro mostrando la info
             </Routes>
           </CartProvider>
         </BrowserRouter>
-      </SkeletonTheme>
-    </>
+    
+    
   );
 }
 export default App;
 
-// hora 1.25 de eventos
+
