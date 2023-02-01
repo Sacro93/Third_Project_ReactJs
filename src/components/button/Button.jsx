@@ -1,7 +1,7 @@
 import React from "react";
 import "./button.css";
 
- function Button(props) {
+ function ButtonAction(props) {
    
 
 const [colorState, setColorState]= React.useState();
@@ -13,5 +13,5 @@ const [colorState, setColorState]= React.useState();
   );
 }
 
-export default Button
+export default ButtonAction;
 // 
