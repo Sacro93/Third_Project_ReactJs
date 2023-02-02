@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 function CartContainer() {
   const { cart, removeItem, getTotalPriceincart,getTotalItemsInCart } = useContext(cartContext);
+
+
+  
   const navigate = useNavigate();
 const[orderId,setOrderId]=useState();
 
@@ -46,7 +49,7 @@ sendOrder()
 
 //sin condicional ternario 
 
-if(orderId)
+if(orderId){
 return(
 
   <div>
@@ -57,7 +60,7 @@ return(
 
   
 )
-
+}
 
   return (
     <>
@@ -73,6 +76,7 @@ return(
       <p>El total de tu compra es ${getTotalPriceincart()}</p>
     </div>
     <Button onClick={handleCheckout}>Finalizar compra</Button>
+
     //no mostrar boton finalizar compra ni precio total en carrito cuando el mismo este vacio
     //vaciar el cart una vez finalizada la compra
     </>

@@ -1,5 +1,6 @@
 import React from "react";
-import "./button.css";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
  function ButtonAction(props) {
    
@@ -7,9 +8,11 @@ import "./button.css";
 const [colorState, setColorState]= React.useState();
 
   return (
-    <button onClick={props.onClick} className="btn btn-primary btn-sm">
-      {props.children}
-    </button>
+    
+    
+    <Stack spacing={2} direction="row">
+      <Button variant="contained" onClick={props.onClick} >{props.children}</Button>
+    </Stack>
   );
 }
 

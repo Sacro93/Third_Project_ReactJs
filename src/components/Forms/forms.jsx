@@ -1,98 +1,114 @@
 import React from "react";
-import { Formik } from "formik";
+import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
 import ButtonAction from "../button/Button";
+import { useState } from "react";
 
 function FormData() {
+  const [formSend, SetFormSend] = useState(false);
+
   return (
     <>
-    <Formik
-    initialValues={{
-        name:"",
-        email:"",
-        addres:"",
-        phone:"",
-        
-    }}
-validate={(valores)=>{
-    let notGreat={};
+      <Formik
+        initialValues={{
+          name: "",
+          email: "",
+          address: "",
+          phone: "",
+        }}
+        validate={(valores) => {
+          let notGreat = {};
 
-    if(!valores.name){
-        notGreat.name="Por favor ingresa un nombre"
-    }
+          if (!valores.name) {
+            notGreat.name = "Por favor ingresa correctamente";
+          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)) {
+            notGreat.name = "El nombre solo puede contener letras y espacios";
+          }
 
-    return notGreat;
+          if (!valores.email) {
+            notGreat.email = "Por favor ingresa un nombre";
+          } else if (
+            !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+              valores.email
+            )
+          ) {
+            notGreat.email = "Verificar ";
+          }
+          return notGreat;
 
-}}
+        }}
+        //mandar a una base de datos
+        onSubmit={( { resetForm }) => {
+          resetForm();
+          console.log("formulario enviado");
+          SetFormSend(true);
+          setTimeout(() => SetFormSend(false), 3000);
+        }}
+      >
+        {({  errors }) => (
+          <Form className="container">
+            <p> Completa los datos para ponernos en contacto</p>
+            <div className="p-2 bg-light border">
+              <label htmilFor="name">Nombre Completo</label>
+              <Field 
+              type="text" 
+              id="name" 
+              name="name" 
+              placeholder="John Doe"
+               />
+              <ErrorMessage
+                name="name"
+                component={() => <div className="h3"> {errors.name}</div>}
+              />
+            </div>
 
-        onSubmit={(valores)=>{
-           
-
-        }}>
-
-
-
-
-        {({handleSubmit,values,errors,handleChange,handleBlur})=>(
-
-
-      <form className="container" onSubmit={handleSubmit}>
-        
-        <p> Completa los datos para ponernos en contacto</p>
-
-        <div className="p-2 bg-light border">
-          <label htmilFor="name">Nombre Completo</label>
-          <input 
-          type="text" 
-          id="name" 
-          name="name" 
-          placeholder="" 
-          value={values.name}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          />
-          {errors.name && <div className="h3"> {errors.name}</div>}
-        </div>
-//min 29 guia formik
-        <div className="p-2 bg-light border"> 
-          <label htmilFor="addres">Domicilio </label>
-          <input 
-          type="text" 
-          id="addres" 
-          name="addres" 
-          placeholder="" 
-          value={values.addres}
-          onChange={handleChange}
-          />
-        </div>
-
-        <div className="p-2 bg-light border">
-          <label htmilFor="phone">Telefono de contacto </label>
-          <input 
-          type="text" 
-          id="phone" 
-          name="phone" 
-          placeholder="" 
-          value={values.phone}
-          onChange={handleChange}
-          />
-        </div>
-
-        <div className="p-2 bg-light border">
-          <label htmilFor="email">Correo </label>
-          <input 
-          type="email" 
-          id="email"
-           name="email" 
-          placeholder=""
-          value={values.email}
-          onChange={handleChange} 
-          />
-        </div>
-
-
-       <button className="p-2 bg-light border" type="submit">Enviar</button>
-      </form>
-      )}
+            <div className="p-2 bg-light border">
+              <label htmilFor="addres">Domicilio </label>
+              <Field 
+              type="text" id="addres" 
+              name="address" 
+              placeholder="Jose  Ingenieros 1111"
+               />
+              <ErrorMessage
+                name="addres"
+                component={() => <div className="h3"> {errors.address}</div>}
+              />
+            </div>
+            <div className="p-2 bg-light border">
+              <label htmilFor="phone">Telefono de contacto </label>
+              <Field 
+              type="number" 
+              id="phone" 
+              name="phone" 
+              placeholder="11-9999-5555" 
+              />
+              <ErrorMessage
+                name="phone"
+                component={() => <div className="h3"> {errors.phone}</div>}
+              />
+            </div>
+            <div className="p-2 bg-light border">
+              <label htmilFor="email">Correo </label>
+              <Field 
+              type="email" 
+              id="email" 
+              name="email" 
+              placeholder="xxxxx@xxxx.com" 
+              />
+              <ErrorMessage
+                name="email"
+                component={() => <div className="h3"> {errors.email}</div>}
+              />
+            </div>
+            
+            {formSend && <p>Formulario Enviado con exito!</p>}
+            <Field name="mensaje" as="textarea" placeholder="Mensaje adicional"/>
+            <div>
+            <button className="p-2 bg-light border" type="submit">
+              Enviar
+            </button>
+            </div>
+          </Form>
+        )}
       </Formik>
     </>
   );
