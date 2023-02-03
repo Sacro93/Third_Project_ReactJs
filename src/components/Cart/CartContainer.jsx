@@ -4,9 +4,13 @@ import { cartContext } from "../../storage/cartContext";
 import { createOrder } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
 
-
 function CartContainer() {
-  const { cart, removeItem, getTotalPriceInCart,getTotalItemsInCart,getCountByItem,clear } = useContext(cartContext);
+  const { cart,
+    getTotalItemsInCart,
+    getTotalPriceInCart,
+    removeItem,
+    clear,
+    getCountByItem, } = useContext(cartContext);
 
 
   
@@ -60,14 +64,22 @@ return(
           <h1>{itemInCart.title}</h1>
           <h2>{itemInCart.price}</h2>
           <h4>{itemInCart.img}</h4>
-     <h5>Cantidad de este producto {getCountByItem()}</h5>
+     <h5>Cantidad de este producto {()=>getCountByItem()}</h5>
         </div>
       ))}
       <h4>Total de Articulos {getTotalItemsInCart()}</h4>
-      <button onClick={clear()}>Deletle items</button>
-      <p>El total de tu compra es ${getTotalPriceInCart()}</p>
+
+      {<Button onClick={()=>removeItem()}>Dele</Button>}
+      <br />
+      {getTotalPriceInCart() === 0 ?( "") 
+      : 
+      (<p>El total de tu compra es ${getTotalPriceInCart()}</p>)
+}
     </div>
-    <Button onClick={handleCheckout}>Finalizar compra</Button>
+    <Button onClick={()=>clear()}>Clear all</Button>
+    { 
+    getTotalItemsInCart()=== 0 ?(<Button>Sin Productos</Button>) :
+   ( <Button onClick={handleCheckout}>Finalizar compra</Button>)}
 
     
     </>

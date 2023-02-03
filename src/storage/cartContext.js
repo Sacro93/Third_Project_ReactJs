@@ -27,7 +27,6 @@ export function CartProvider(props) {
   }
 
   function getTotalItemsInCart() {
-    // reduce 👌
     let total = 0;
     for (let i = 0; i < newCart.length; i++) {
       const element = newCart[i];
