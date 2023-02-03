@@ -4,8 +4,9 @@ import { cartContext } from "../../storage/cartContext";
 import { createOrder } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
 
+
 function CartContainer() {
-  const { cart, removeItem, getTotalPriceincart,getTotalItemsInCart } = useContext(cartContext);
+  const { cart, removeItem, getTotalPriceInCart,getTotalItemsInCart,getCountByItem,clear } = useContext(cartContext);
 
 
   
@@ -24,21 +25,11 @@ const[orderId,setOrderId]=useState();
         phone:123123123213
       },
       items: cart,
-    price:getTotalPriceincart(),
+    price:getTotalPriceInCart(),
     date:new Date()
 
     }
 
-    
- //option A
-  //  createOrder(order).then(id=>alert(`Compraste x items, tu id es : ${id}`))
-
-  //option B
-    // createOrder(order).then(id=>{navigate(`/gracias/${id}`)})
-//ver sweet alert
-//vaciar el carrito
-
-//option C
 async function sendOrder(){
   let id= await createOrder(order)
   setOrderId(id)
@@ -47,7 +38,6 @@ async function sendOrder(){
 sendOrder()
   }
 
-//sin condicional ternario 
 
 if(orderId){
 return(
@@ -70,15 +60,16 @@ return(
           <h1>{itemInCart.title}</h1>
           <h2>{itemInCart.price}</h2>
           <h4>{itemInCart.img}</h4>
-      <button>X</button>
+     <h5>Cantidad de este producto {getCountByItem()}</h5>
         </div>
       ))}
-      <p>El total de tu compra es ${getTotalPriceincart()}</p>
+      <h4>Total de Articulos {getTotalItemsInCart()}</h4>
+      <button onClick={clear()}>Deletle items</button>
+      <p>El total de tu compra es ${getTotalPriceInCart()}</p>
     </div>
     <Button onClick={handleCheckout}>Finalizar compra</Button>
 
-    //no mostrar boton finalizar compra ni precio total en carrito cuando el mismo este vacio
-    //vaciar el cart una vez finalizada la compra
+    
     </>
   );
 }

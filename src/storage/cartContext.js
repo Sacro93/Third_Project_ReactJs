@@ -1,45 +1,91 @@
 import { createContext, useEffect, useState, useContext } from "react";
-import  {useDeepCopy}  from "../components/hooks/useDeepCopy";
+import { useDeepCopy } from "../components/hooks/useDeepCopy";
+
 
 export const cartContext = createContext({ cart: [] });
 
 export function CartProvider(props) {
+  // cart tiene elementos con id y cantidad
   const [cart, setCart] = useState([]);
-  let newCart = useDeepCopy(cart)
+  let newCart = useDeepCopy(cart);
+
   
-  //problemas con cart no lee el objeto al crear un finalizar compra y se consologuea en CartContainer.jsx
 
-  function addToCart(item) {
-    let isInCart = cart.findIndex((itemInCart) => itemInCart.id === item.id);
-    // let newCart = cart.map((item) => item);
-
-    if (isInCart !== -1) {
-      alert("Cuidado! item ya agregado");
+  function addToCart(product) {
+    const index = cart.findIndex(
+      (itemInCart) => itemInCart.product.id === product.id
+    );
+    if (index === -1) {
+      newCart.push({ product, count: 1 });
     } else {
-      newCart.push(item);
-      setCart(newCart);
+    
+      const itemInCart = newCart[0];
+      itemInCart.count++;
     }
+
+    setCart(newCart);
   }
+
   function getTotalItemsInCart() {
     // reduce 👌
+    let total = 0;
+    for (let i = 0; i < newCart.length; i++) {
+      const element = newCart[i];
+      total = total + element.count;
+    }
 
-    let total = 5;
-    // por Cada producto(for, forEach) -> total += producto.count
-    return cart.length;
-  }
-  function getTotalPriceincart() {
-    let total=5
     return total;
   }
-  function removeItem(itemid) {}
+
+  function getTotalPriceInCart() {
+    let total = 0;
+    for (let i = 0; i < newCart.length; i++) {
+      const element = newCart[i];
+      total = total + element.product.price * element.count;
+    }
+
+    return total;
+  }
+
+  function removeItem(itemId) {
+    const index = newCart.findIndex((item) => item.product.id === itemId);
+    if (index !== -1) {
+      const item = newCart[index];
+      if (item.count === 1) {
+        newCart.splice(index, 1);
+      } else {
+        item.count--;
+      }
+    }
+
+    setCart(newCart);
+  }
 
   function clear() {
-    //
+    setCart([]);
   }
+
+  function getCountByItem(itemId) {
+    const index = newCart.findIndex((item) => item.product.id === itemId);
+    if (index !== -1) {
+      const item = newCart[index];
+      return item.count
+    }
+    return 0;
+  }
+
   return (
-  
     <cartContext.Provider
-      value={{ cart,  addToCart, getTotalItemsInCart,getTotalPriceincart,removeItem }}>
+      value={{
+        cart,
+        addToCart,
+        getTotalItemsInCart,
+        getTotalPriceInCart,
+        removeItem,
+        clear,
+        getCountByItem,
+      }}
+    >
       {props.children}
     </cartContext.Provider>
   );

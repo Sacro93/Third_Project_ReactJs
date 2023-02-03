@@ -1,8 +1,11 @@
 import  { useState } from "react";
 import Button from "../button/Button";
+import { cartContext } from "../../storage/cartContext";
+
 
 function ItemCount({ onAddToCart })  {
   const [count, setCount] = useState(0);
+  
 
   function handleAdd() {
     setCount(count + 1);
