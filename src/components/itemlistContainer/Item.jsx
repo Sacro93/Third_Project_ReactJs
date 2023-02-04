@@ -6,6 +6,10 @@ function Item(props) {
   const { title, price, img,id,stock } = props.article;
   
   return (
+
+<>
+
+  
     <div className="flexCard ">
       <div  className="card" ></div>
       <div className="card-body " >
@@ -22,6 +26,7 @@ function Item(props) {
       
       </div>
     </div>
+    </>
   ); 
 }
 

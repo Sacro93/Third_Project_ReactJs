@@ -1,51 +1,34 @@
-import  { useState } from "react";
-import Button from "../button/Button";
+import { useState } from "react";
+import ButtonAction from "../button/Button";
 
-function ItemCount({ onAddToCart })  {
+
+function ItemCount({ onAddToCart, stock }) {
   const [count, setCount] = useState(0);
 
   function handleAdd() {
+    if (count < stock) 
     setCount(count + 1);
   }
-  function handleDiscount() {
+
+  function handleSubstract() {
+    
     setCount(count - 1);
   }
-
   return (
-    <div class="  ">
-      <div class="d-flex wrap btn justify-content-center">
-        <Button
-          class="badge text-bg-primary"
-          disabled={count <= 1}
-          onClick={handleDiscount}
-        >
-          {" "}
-          -{" "}
-        </Button>
+    <div >
+     
+      <div >
+        <ButtonAction onClick={handleSubstract}>-</ButtonAction>
+        <span>{count}</span>
+        <ButtonAction onClick={handleAdd}>+</ButtonAction>
+      </div>
 
-        <span class="badge text-bg-secondary d-flex align-items-center">
-          {" "}
-          {count}{" "}
-        </span>
-        <Button
-          class="badge text-bg-primary"
-          onClick={handleAdd}
-          
-        >
-          +
-        </Button>
-        <div >
-        <Button onClick={() => onAddToCart(count)}>Agregar al carrito</Button>
+      <div className="itemcount_btns">
+        <ButtonAction onClick={() => onAddToCart(count)}>Agregar al carrito</ButtonAction>
       </div>
-        
-       
-      </div>
-      
     </div>
-
   );
 }
 
 export default ItemCount;
-
 

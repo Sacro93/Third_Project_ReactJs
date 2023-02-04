@@ -1,13 +1,14 @@
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Form, Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import ItemListcontainer from "./components/itemlistContainer/ItemListContainer";
 import PageNotFound from "./components/HomePage/PageNotFound";
 import { CartProvider } from "./storage/cartContext";
 import CartContainer from "./components/Cart/CartContainer";
-import { getProducts } from "./services/firebase";
+import FormData from "./components/Forms/FormData";
+
 
 
 
@@ -23,6 +24,7 @@ function App() {
                 path="/detail/:idArticle"
                 element={<ItemDetailContainer />}
               />
+              <Route path="/form" element={<FormData/>}/>
               <Route
                 path="/category/:categoryid"
                 element={<ItemListcontainer />}
