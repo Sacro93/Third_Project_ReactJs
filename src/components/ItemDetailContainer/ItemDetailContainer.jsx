@@ -21,7 +21,16 @@ function ItemDetailContainer() {
     const articleCount = { ...specificArticle, count: count };
     addToCart(articleCount);
   }
+  function checkStock() {
+    let itemInCart = cart.find((item) => item.id === specificArticle.id);
 
+    let stockUpdated = specificArticle.stock;
+
+    if (itemInCart) {
+      stockUpdated = specificArticle.stock - itemInCart.count;
+    }
+    return stockUpdated;
+  }
   useEffect(() => {
     getSpecificArticle(params.idArticle).then((res) => {
       setDetailArticle(res);
@@ -37,6 +46,7 @@ function ItemDetailContainer() {
       title={specificArticle.title}
       detail={specificArticle.detail}
       price={specificArticle.price}
+      stockUpdated={checkStock()}
     />
   );
 }

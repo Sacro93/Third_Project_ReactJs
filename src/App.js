@@ -7,7 +7,7 @@ import ItemListcontainer from "./components/itemlistContainer/ItemListContainer"
 import PageNotFound from "./components/HomePage/PageNotFound";
 import { CartProvider } from "./storage/cartContext";
 import CartContainer from "./components/Cart/CartContainer";
-import FormData from "./components/Forms/forms";
+import FormData from "./components/Forms/FormData";
 
 
 

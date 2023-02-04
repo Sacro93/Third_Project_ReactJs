@@ -1,90 +1,96 @@
-import Button from "../button/Button";
+import ButtonAction from "../button/Button";
 import { useContext, useState } from "react";
 import { cartContext } from "../../storage/cartContext";
+import Swal from "sweetalert2";
+import { createOrder_WithStockControl } from "../../services/firebase";
+import FormCheckout from "../Forms/FormData";
 import { createOrder } from "../../services/firebase";
-import { useNavigate } from "react-router-dom";
+
 
 function CartContainer() {
-  const { cart,
+  const {
+    cart,
     getTotalItemsInCart,
     getTotalPriceInCart,
     removeItem,
     clear,
-    getCountByItem, } = useContext(cartContext);
+    getCountByItem,
+  } = useContext(cartContext);
+
+  const [orderId, setOrderId] = useState();
+
+  function handleCheckout(evt, userData) {
+    evt.preventDefault();
+    
+    const items = cart.map(({ id, price, title, count }) => ({
+      id,
+      price,
+      title,
+      count,
+    }));
+
+    const order = {
+      buyer: userData,
+      items: items, 
+      total: getTotalPriceInCart(),
+      date: new Date(),
+    };
 
 
-  
-  const navigate = useNavigate();
-const[orderId,setOrderId]=useState();
-
-
-
-  function handleCheckout(evt){
-    const items=cart.map(({id,price,title,count})=>({id,price,title,count}))
-
-    const order={
-      buyer:{
-        name:"Fran",
-        email:"sacro@gmail.com",
-        phone:123123123213
-      },
-      items: cart,
-    price:getTotalPriceInCart(),
-    date:new Date()
-
+   
+    async function sendOrder(){
+      let id= await createOrder(order)
+      setOrderId(id)
     }
 
-async function sendOrder(){
-  let id= await createOrder(order)
-  setOrderId(id)
-  
-}
-sendOrder()
+    sendOrder();
   }
 
-
-if(orderId){
-return(
-
-  <div>
-  <h1>Gracias por tu compra</h1>
-  <h1>El id de tu compra es : {orderId}</h1>
-  <p>//ver que se redireccione a otra Route, salir del cart//e1</p>
-  </div>
-
-  
-)
-}
+  if (orderId)
+    return (
+      <div>
+        <h1>Gracias por tu compra</h1>
+        <p>El id de tu compra {orderId}</p>
+      </div>
+    );
 
   return (
     <>
-    <div>
-      {cart.map((itemInCart) => (
-        <div>
-          <h1>{itemInCart.title}</h1>
-          <h2>{itemInCart.price}</h2>
-          <h4>{itemInCart.img}</h4>
-     <h5>Cantidad de este producto {()=>getCountByItem()}</h5>
+     <div>
+      {cart.map(({product})=>(
+        <div key={product.title}>
+          <h1>{product.title}</h1>
+          <h2>{product.price}</h2>
+          <img src={product.img} alt={product.title} />
+          <h5> Cantidad de este producto: {getCountByItem(product.id)}</h5>
+          <ButtonAction onClick={()=>removeItem(product.id)}> Deletle</ButtonAction>
         </div>
       ))}
-      <h4>Total de Articulos {getTotalItemsInCart()}</h4>
+{getTotalPriceInCart() === 0 ? (
+      ""
+    ) : (
+      <p>El total de tu compra es ${getTotalPriceInCart()}</p>
+    )}
 
-      {<Button onClick={()=>removeItem()}>Dele</Button>}
-      <br />
-      {getTotalPriceInCart() === 0 ?( "") 
-      : 
-      (<p>El total de tu compra es ${getTotalPriceInCart()}</p>)
-}
-    </div>
-    <Button onClick={()=>clear()}>Clear all</Button>
-    { 
-    getTotalItemsInCart()=== 0 ?(<Button>Sin Productos</Button>) :
-   ( <Button onClick={handleCheckout}>Finalizar compra</Button>)}
+    <br />
+    <ButtonAction onClick={() => clear()}>Clear all</ButtonAction>
 
-    
+
+    {getTotalItemsInCart() === 0 ? (
+<ButtonAction>Sin Productos</ButtonAction>
+) : (
+<ButtonAction onClick={handleCheckout}>Finalizar compra</ButtonAction>
+)}
+<div>
+<FormCheckout onCheckout={handleCheckout} />
+ 
+</div>
+     </div>
     </>
   );
 }
 
 export default CartContainer;
-//55 firebase
+
+
+

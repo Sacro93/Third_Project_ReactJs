@@ -4,7 +4,7 @@ import Flex from "../Flex/flex";
 import NavItem from "../NavBar/NavItem";
 
 
-function DetailContainer({title, price, img,detail,onAddToCart,isInCart}){
+function DetailContainer({title,stockUpdated, price, img,detail,onAddToCart,isInCart}){
 
  
     return(
@@ -22,7 +22,7 @@ function DetailContainer({title, price, img,detail,onAddToCart,isInCart}){
       <Button>Ir al Cart</Button>
     </NavItem>
     :
-    <ItemCount onAddToCart={onAddToCart}/>
+    <ItemCount stock={stockUpdated} onAddToCart={onAddToCart} />
    }
   </div>
 </div>

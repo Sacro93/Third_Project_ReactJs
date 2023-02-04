@@ -5,7 +5,6 @@ import { useDeepCopy } from "../components/hooks/useDeepCopy";
 export const cartContext = createContext({ cart: [] });
 
 export function CartProvider(props) {
-  // cart tiene elementos con id y cantidad
   const [cart, setCart] = useState([]);
   let newCart = useDeepCopy(cart);
 
