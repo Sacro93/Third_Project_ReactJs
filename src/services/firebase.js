@@ -8,8 +8,6 @@ import {
   query,
   where,
   addDoc,
-  writeBatch,
-  documentId,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -30,8 +28,12 @@ export async function getProducts() {
   const snapshot = await getDocs(productsReference);
 
   const getArticles = snapshot.docs.map((element) => {
+    //leo el id y la data de los elementos
     let article = element.data();
     article.id = element.id;
+    //version sugarSyntax
+    //const getArticles= snapshot.docs.map((element)=>{...element.data(, id: element.id})
+
     return article;
   });
 
@@ -48,9 +50,11 @@ export async function getSpecificArticle(idUrl) {
 export async function getCategory(categoryUrl) {
 
   const productsReference = collection(dataBaseFirestore, "products");
-
+//comparador de la consulta
   const q = query(productsReference, where("category", "==", categoryUrl));
+  
   const snapshot =await getDocs(q)
+  
   const getArticles = snapshot.docs.map((element) => {
     let article = element.data();
     article.id = element.id;
@@ -63,48 +67,11 @@ export async function createOrder(order){
 
   const orderRef=collection( dataBaseFirestore,"order")
   let respuesta = await addDoc(orderRef,order)
+  console.log(respuesta,respuesta.id)
   return respuesta.id
 
 }
 
-
-export async function createOrder_WithStockControl(order) {
-  const orderRef = collection(dataBaseFirestore, "order");
-  const productsRef = collection(dataBaseFirestore, "products");
-  const batch = writeBatch(dataBaseFirestore);
-  const arrayIds = order.items.map((item) => item.id);
-
-  const q = query(productsRef, where(documentId(), "in", arrayIds));
-  const querySnaphot = await getDocs(q);
-  const docsToUpdate = querySnaphot.docs;
-  let itemsSinStock = [];
-  
-  docsToUpdate.forEach((doc) => {
-    let stock = doc.data().stock;
-  
-    let itemInCart = order.items.find((item) => item.id === doc.id);
-    let countInCart = itemInCart.count;
-    
-    let newStock = stock - countInCart;
-   
-    if (newStock < 0) {
-      itemsSinStock.push(doc.id);
-    } else {
-      batch.update(doc.ref, { stock: newStock });
-    }
-  });
-  
-  if (itemsSinStock.length >= 1)
-    throw new Error(
-      `Stock no disponible para el producto para los productos ${itemsSinStock}`
-    );
-  
-  await batch.commit();
-
-  
-  let newOrder = await addDoc(orderRef, order);
-  return newOrder.id;
-}
 
 
 export default dataBaseFirestore;

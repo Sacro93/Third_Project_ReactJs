@@ -58,7 +58,7 @@ function CartContainer() {
     <>
      <div>
       {cart.map(({product})=>(
-        <div key={product.title}>
+        <div key={product.id}>
           <h1>{product.title}</h1>
           <h2>{product.price}</h2>
           <img src={product.img} alt={product.title} />
@@ -76,15 +76,10 @@ function CartContainer() {
     <ButtonAction onClick={() => clear()}>Clear all</ButtonAction>
 
 
-    {getTotalItemsInCart() === 0 ? (
-<ButtonAction>Sin Productos</ButtonAction>
-) : (
-<ButtonAction onClick={handleCheckout}>Finalizar compra</ButtonAction>
-)}
-<div>
+ 
 <FormCheckout onCheckout={handleCheckout} />
  
-</div>
+
      </div>
     </>
   );
