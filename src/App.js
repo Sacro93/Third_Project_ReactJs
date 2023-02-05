@@ -13,7 +13,7 @@ import FormData from "./components/Forms/FormData";
 
 
 function App() {
-  // getProducts()
+ 
   return (
         <BrowserRouter>
           <CartProvider>

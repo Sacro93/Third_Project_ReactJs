@@ -28,11 +28,10 @@ export async function getProducts() {
   const snapshot = await getDocs(productsReference);
 
   const getArticles = snapshot.docs.map((element) => {
-    //leo el id y la data de los elementos
+ 
     let article = element.data();
     article.id = element.id;
-    //version sugarSyntax
-    //const getArticles= snapshot.docs.map((element)=>{...element.data(, id: element.id})
+   
 
     return article;
   });
@@ -50,7 +49,7 @@ export async function getSpecificArticle(idUrl) {
 export async function getCategory(categoryUrl) {
 
   const productsReference = collection(dataBaseFirestore, "products");
-//comparador de la consulta
+
   const q = query(productsReference, where("category", "==", categoryUrl));
   
   const snapshot =await getDocs(q)

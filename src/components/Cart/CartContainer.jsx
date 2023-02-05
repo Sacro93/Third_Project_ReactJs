@@ -1,8 +1,6 @@
 import ButtonAction from "../button/Button";
 import { useContext, useState } from "react";
 import { cartContext } from "../../storage/cartContext";
-import Swal from "sweetalert2";
-import { createOrder_WithStockControl } from "../../services/firebase";
 import FormCheckout from "../Forms/FormData";
 import { createOrder } from "../../services/firebase";
 
