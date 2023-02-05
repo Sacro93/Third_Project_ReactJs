@@ -20,10 +20,10 @@ function CartContainer() {
   function handleCheckout(evt, userData) {
     evt.preventDefault();
     
-    const items = cart.map(({ id, price, title, count }) => ({
-      id,
-      price,
-      title,
+    const items = cart.map(({ product,count }) => ({
+      id:product.id,
+      price:product.price,
+      title:product.title,
       count,
     }));
 
