@@ -39,39 +39,12 @@ function ItemListcontainer() {
     }
   }, [categoryid]);
   
-  // if (isLoading) {
-  //   return <Loader size={120} color="orange" />;
-  // } else {
-  //   return (
-  //     <>
-  //       <Flex>
-  //         {alertText && (
-  //           <div className="alert_container">
-  //             <span className={`alert alert_${alertText.type}`}>
-  //               {alertText.text}
-  //             </span>
-  //           </div>
-  //         )}
-  //         <Flex>
-  //           {articulos.map((itemIterado) => {
-  //             return <Item key={itemIterado.id} item={itemIterado} />;
-  //           })}
-  //         </Flex>
-  //       </Flex>
-  //     </>
-  //   );
-  // }
-
-
-
   return (
     <>
       {isLoading ? (<Loading/>
     
       ) : (
        <Flex>
-         
-         
          <Flex>
           {articulos.map((itemIterado) => {
             return (

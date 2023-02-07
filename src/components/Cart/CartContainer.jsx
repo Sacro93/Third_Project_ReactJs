@@ -3,7 +3,8 @@ import { useContext, useState } from "react";
 import { cartContext } from "../../storage/cartContext";
 import FormCheckout from "../Forms/FormData";
 import { createOrder } from "../../services/firebase";
-
+import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 function CartContainer() {
   const {
@@ -46,11 +47,18 @@ function CartContainer() {
 
   if (orderId)
     return (
-      <div>
-        <h1>Gracias por tu compra</h1>
-        <p>El id de tu compra {orderId}</p>
-      </div>
-    );
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Genial! ',
+        text: `Solicitud de compra N° ${orderId} procesada con exito! Un asesor va a estar en contacto con vos en menos de 1 hora!`,
+        confirmButtonText: 'Volver al menu'
+      }).then(function (result) {
+        if (result.value) {
+          window.location = "/";
+        }}
+      )
+    )
 
   return (
     <>
@@ -64,14 +72,27 @@ function CartContainer() {
           <ButtonAction onClick={()=>removeItem(product.id)}> Deletle</ButtonAction>
         </div>
       ))}
-{getTotalPriceInCart() === 0 ? (
-      ""
-    ) : (
-      <p>El total de tu compra es ${getTotalPriceInCart()}</p>
-    )}
 
-    <br />
-    <ButtonAction onClick={() => clear()}>Clear all</ButtonAction>
+      <p>El total de tu compra es ${getTotalPriceInCart()}</p>
+  
+
+
+
+   {cart.length === 0  ?  (
+      
+  Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Sin items en el carrito!',
+  confirmButtonText: 'Volver al menu'
+}).then(function (result) {
+  if (result.value) {
+    window.location = "/";
+  }}
+)
+):
+ (
+  <ButtonAction onClick={() => clear()}>Clear all</ButtonAction>)}
 
 
  
@@ -84,6 +105,3 @@ function CartContainer() {
 }
 
 export default CartContainer;
-
-
-

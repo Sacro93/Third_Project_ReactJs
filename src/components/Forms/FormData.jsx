@@ -48,6 +48,7 @@ export default function FormCheckout(props) {
         <h1>Llena tus datos para finalizar la compra 🛍</h1>
         {fieldsForm.map((field) => (
           <InputForm
+            key={field}
             value={userData[field]}
             name={field}
             onChange={onInputChange}

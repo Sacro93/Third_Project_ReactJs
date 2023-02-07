@@ -18,8 +18,7 @@ function ItemDetailContainer() {
 
   function handleAddToCart(count) {
     setIsInCart(true);
-    const articleCount = { ...specificArticle, count: count };
-    addToCart(articleCount);
+    addToCart(specificArticle, count);
   }
   function checkStock() {
     let itemInCart = cart.find((item) => item.id === specificArticle.id);

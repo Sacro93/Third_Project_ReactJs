@@ -10,16 +10,15 @@ export function CartProvider(props) {
 
   
 
-  function addToCart(product) {
+  function addToCart(product, count = 1) {
     const index = cart.findIndex(
       (itemInCart) => itemInCart.product.id === product.id
     );
     if (index === -1) {
-      newCart.push({ product, count: 1 });
+      newCart.push({ product, count: count });
     } else {
-    
       const itemInCart = newCart[0];
-      itemInCart.count++;
+      itemInCart.count += count;
     }
 
     setCart(newCart);

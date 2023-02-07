@@ -4,10 +4,17 @@ import Flex from "../Flex/flex";
 import NavItem from "../NavBar/NavItem";
 
 
-function DetailContainer({title,stockUpdated, price, img,detail,onAddToCart,isInCart}){
 
- 
+function DetailContainer({id,title,stockUpdated, price, img,detail,onAddToCart,isInCart}){
+
+
+
+
     return(
+ 
+
+
+
 <Flex>
         <div className="card mb-3 ">
   <img src={img}className="card-img-top container"  alt="..."/>
@@ -22,12 +29,13 @@ function DetailContainer({title,stockUpdated, price, img,detail,onAddToCart,isIn
       <Button>Ir al Cart</Button>
     </NavItem>
     :
-    <ItemCount stock={stockUpdated} onAddToCart={onAddToCart} />
+    <ItemCount id={id} stock={stockUpdated} onAddToCart={onAddToCart} />
    }
   </div>
 </div>
 </Flex>
     )
 }
+
 
 export default DetailContainer
