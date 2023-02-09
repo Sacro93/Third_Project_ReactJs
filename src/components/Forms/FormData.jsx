@@ -44,10 +44,13 @@ export default function FormCheckout(props) {
       );
     }
     return (
-      <form onSubmit={onSubmit}>
-        <h1>Llena tus datos para finalizar la compra 🛍</h1>
+      <form className="container h-100" onSubmit={onSubmit}>
+        <div className="row d-flex justify-content-center align-items-center h-100 card mb-4">
+          <div className="text-center ">
+        <h1 className="small text-muted mb-2 pb-2">Completa con tus datos para contactarnos con vos:</h1>
         {fieldsForm.map((field) => (
-          <InputForm
+          <InputForm 
+       
             key={field}
             value={userData[field]}
             name={field}
@@ -55,7 +58,9 @@ export default function FormCheckout(props) {
             label={field}
             userData={userData}
           />
+          
         ))}
+        <div>
         <button
           onClick={(evt) => props.onCheckout(evt, userData)}
           disabled={formIsInvalid()}
@@ -67,6 +72,9 @@ export default function FormCheckout(props) {
         <button onClick={() => setUserData({ name: "", email: "", phone: "" })}>
           Limpiar
         </button>
+        </div>
+        </div>
+        </div>
       </form>
     );
   }
