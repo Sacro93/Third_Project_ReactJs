@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ButtonAction from "../button/Button";
 
 
 function InputForm(props) {
@@ -61,17 +62,17 @@ export default function FormCheckout(props) {
           
         ))}
         <div>
-        <button
+        <ButtonAction
           onClick={(evt) => props.onCheckout(evt, userData)}
           disabled={formIsInvalid()}
           type="submit"
         >
           Crear orden
-        </button>
+        </ButtonAction>
   
-        <button onClick={() => setUserData({ name: "", email: "", phone: "" })}>
+        <ButtonAction onClick={() => setUserData({ name: "", email: "", phone: "" })}>
           Limpiar
-        </button>
+        </ButtonAction>
         </div>
         </div>
         </div>

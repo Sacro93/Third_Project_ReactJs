@@ -24,7 +24,7 @@ function App() {
                 path="/detail/:idArticle"
                 element={<ItemDetailContainer />}
               />
-              <Route path="/form" element={<FormData/>}/>
+              <Route path="/form" element={<FormData  />}/>
               <Route
                 path="/category/:categoryid"
                 element={<ItemListcontainer />}
@@ -32,7 +32,7 @@ function App() {
               <Route path="/cart" element={<CartContainer />} />
               <Route path="*" element={<PageNotFound />} />
               <Route path="/gracias/:orderid" element={<h1>Gracias por tu compra</h1>}/>
-              //ver con useParams llamar al id del producto que compro mostrando la info
+             
             </Routes>
           </CartProvider>
         </BrowserRouter>

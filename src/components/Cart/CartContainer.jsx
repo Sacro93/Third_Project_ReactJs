@@ -130,8 +130,12 @@ function CartContainer() {
                     <span className="lead fw-normal">${getTotalPriceInCart()}</span>
                     
                   </p>
+                  <p className="mb-0 me-5 d-flex align-items-center">
+                  <ButtonAction  onClick={() => clear()}>Borrar carrito</ButtonAction>
+                    
+                  </p>
                 </div>
-                
+               
               </div>
             </div>
           </div>
@@ -149,12 +153,10 @@ function CartContainer() {
                 }
               })
             ) : (
-              <div className="container h-100 me-2 d-flex justify-content-end gap-3">
-              <br />
-              <ButtonAction  onClick={() => clear()}>Borrar carrito</ButtonAction>
-              <NavItem to="/Form">
-              <ButtonAction>Caja</ButtonAction>
-            </NavItem>
+              <div className="container h-100 me-2 d-flex justify-contentcenter-end gap-3">
+          
+              <hr />
+             <FormCheckout onCheckout={handleCheckout} />
             </div>
 
               
