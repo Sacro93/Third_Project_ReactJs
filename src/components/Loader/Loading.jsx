@@ -3,11 +3,11 @@ import { DotSpinner } from '@uiball/loaders'
 
 export default function Loading() {
   return (
-    <DotSpinner 
-       size={150}
-       speed={0.9} 
-       color="black" 
-      />
+    <div className="text-center">
+    <div className="spinner-border" role="status ">
+      
+    </div>
+  </div>
    
   )
 }

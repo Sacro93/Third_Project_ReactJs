@@ -41,7 +41,7 @@ function ItemListcontainer() {
   
   return (
     <>
-      {isLoading ? (<Loading/>
+      {isLoading ? (<Loading />
     
       ) : (
        <Flex>

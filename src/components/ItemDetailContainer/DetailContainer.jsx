@@ -1,7 +1,9 @@
-import Button from "../button/Button";
+
 import ItemCount from "../itemCount/ItemCount";
-import Flex from "../Flex/flex";
+
 import NavItem from "../NavBar/NavItem";
+import ButtonAction from "../button/Button";
+import "./detail.css"
 
 function DetailContainer({
   id,
@@ -14,37 +16,37 @@ function DetailContainer({
   isInCart,
 }) {
   return (
-  <div className="">
-      <div className="container h-100 " >
-        <div className="aling-items-center">
-        <div className="col-md-5">
-          <img className="img-fluid" src={img}  />
+  <div className="card text-center text-muted mb-4 pb-2">
+      <div className="card-body" >
+        <div >
+        <div >
+          <img className="image" src={img}  />
         </div>
         <div className="card-body">
-          <div className="col-md-5 d-flex justify-content-center">
+          <div className=" d-flex justify-content-center">
             <div>
               <p className=" text-center text-muted mb-4 pb-2">{title}</p>
               <p className="lead fw-normal mb-0">{detail}</p>
             </div>
           </div>
 
-          <div className="col-md-5 d-flex justify-content-center">
+          <div className=" d-flex justify-content-center">
             <div>
               
-              <p className="lead fw-normal mb-0"> Price : ${price}</p>
+              <p className="lead fw-normal mb-3 "> Price : ${price}</p>
             </div>
           
           
           </div>
-<br />
-<div className="d-flex">
+
+<div className="d-flex  justify-content-evenly gap-3">
           {isInCart ? (
             <NavItem to="/cart">
-              <Button>Go to cart</Button>
+              <ButtonAction>Go to cart</ButtonAction>
             </NavItem>
           ) : (
             <div >
-            <ItemCount id={id} stock={stockUpdated} onAddToCart={onAddToCart} />
+            <ItemCount className=" d-flex justify-content-evenly" id={id} stock={stockUpdated} onAddToCart={onAddToCart} />
             </div>
           )}
           </div>

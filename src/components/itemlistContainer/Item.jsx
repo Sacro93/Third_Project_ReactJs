@@ -11,7 +11,7 @@ function Item(props) {
 
   
     <div className="flexCard ">
-      <div  className="card" ></div>
+      
       <div className="card-body " >
       <h5 className="card-title mb-5">{title}</h5>
       {stock <=2 && <h4 >Ultimas Unidades! </h4>}

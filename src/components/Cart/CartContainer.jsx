@@ -5,6 +5,7 @@ import FormCheckout from "../Forms/FormData";
 import { createOrder } from "../../services/firebase";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import NavItem from "../NavBar/NavItem";
 
 function CartContainer() {
   const {
@@ -75,7 +76,7 @@ function CartContainer() {
                         </div>
                         <div className="col-md-2 d-flex justify-content-center">
                           <div>
-                            <p className="small text-muted mb-4 pb-2">Product</p>
+                            <p className="small text-muted mb-4 pb-2">Producto</p>
                             <p className="lead fw-normal mb-0">{product.title}</p>
                           </div>
                         </div>
@@ -89,8 +90,8 @@ function CartContainer() {
                         </div>
                         <div className="col-md-2 d-flex justify-content-center">
                           <div>
-                            <p className="small text-muted mb-4 pb-2">Price</p>
-                            <p className="lead fw-normal mb-0">{product.price}</p>
+                            <p className="small text-muted mb-4 pb-2">Precio unitario</p>
+                            <p className="lead fw-normal mb-0">${product.price}</p>
                           </div>
                         </div>
                         <div className="col-md-2 d-flex ">
@@ -98,11 +99,12 @@ function CartContainer() {
                             <ButtonAction
                               onClick={() => removeItem(product.id)}
                             >
-                              {" "}
-                              Deletle
+
+                              Borrar
                             </ButtonAction>
                           </div>
                         </div>
+                        
                       </div>
                     </div>
                   </div>
@@ -111,7 +113,7 @@ function CartContainer() {
             </div>
           </div>
         ))}
-        <div className="container h-100">
+        <div className="container h-100 flexCard">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="card mb-5">
               <div className="card-body p-4">
@@ -119,11 +121,17 @@ function CartContainer() {
                 <div className="float-end">
                 
                   <p className="mb-0 me-5 d-flex align-items-center">
-                    <span className="small text-muted me-2">Order total:</span>{" "}
+                    <span className="small text-muted me-2">Total de Productos:</span>{" "}
+                    <span className="lead fw-normal">{getTotalItemsInCart()}</span>
+                    
+                  </p>
+                  <p className="mb-0 me-5 d-flex align-items-center">
+                    <span className="small text-muted me-2">Orden total:</span>{" "}
                     <span className="lead fw-normal">${getTotalPriceInCart()}</span>
                     
                   </p>
                 </div>
+                
               </div>
             </div>
           </div>
@@ -141,13 +149,17 @@ function CartContainer() {
                 }
               })
             ) : (
-              <div className="container h-100 me-2">
+              <div className="container h-100 me-2 d-flex justify-content-end gap-3">
               <br />
-              <ButtonAction  onClick={() => clear()}>Clear all products</ButtonAction></div>
-            )}
-            <div className="container h-100">
-              <FormCheckout onCheckout={handleCheckout} />
+              <ButtonAction  onClick={() => clear()}>Borrar carrito</ButtonAction>
+              <NavItem to="/Form">
+              <ButtonAction>Caja</ButtonAction>
+            </NavItem>
             </div>
+
+              
+              )}
+            
           </div>
         </div>
       </div>
